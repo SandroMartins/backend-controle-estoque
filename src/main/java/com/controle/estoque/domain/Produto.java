@@ -1,6 +1,8 @@
 package com.controle.estoque.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Entity;
@@ -9,6 +11,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.Min;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Produto implements Serializable {
@@ -25,7 +31,13 @@ public class Produto implements Serializable {
 	private TipoProduto tipoProduto;
 	
 	private Double valorFornecedor;
+	
+	@Min(value = 0, message= "Valor minimo deve ser 0")
 	private Integer quantidade;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "produto")
+	private List<MovimentacaoEstoque> movimentacoes = new ArrayList<>();
 	
 	public Produto() {
 	}
@@ -77,6 +89,14 @@ public class Produto implements Serializable {
 
 	public void setQuantidade(Integer quantidade) {
 		this.quantidade = quantidade;
+	}
+	
+	public List<MovimentacaoEstoque> getMovimentacoes() {
+		return movimentacoes;
+	}
+	
+	public void setMovimentacoes(List<MovimentacaoEstoque> movimentacoes) {
+		this.movimentacoes = movimentacoes;
 	}
 
 	@Override

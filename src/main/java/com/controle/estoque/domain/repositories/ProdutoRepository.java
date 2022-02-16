@@ -16,7 +16,7 @@ import com.controle.estoque.domain.TipoProduto;
 @Repository
 public interface ProdutoRepository extends JpaRepository<Produto, Long>{
 	
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Query("SELECT DISTINCT obj FROM Produto obj INNER JOIN obj.tipoProduto tp WHERE tp = :tipoProduto")
 	Page<Produto> findDistinctByTipoProduto(@Param("tipoProduto") Optional<TipoProduto> tipoProduto, Pageable pageRequest);
 
