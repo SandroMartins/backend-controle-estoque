@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 
+import com.controle.estoque.domain.enums.TipoMovimentacao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -49,6 +50,28 @@ public class Produto implements Serializable {
 		this.tipoProduto = tipoProduto;
 		this.valorFornecedor = valorFornecedor;
 		this.quantidade = quantidade;
+	}
+	
+	public double getTotalLucro() {
+		double lucro = 0.0;
+		double lucroTotal = 0.0;
+		for (MovimentacaoEstoque me : getMovimentacoes()) {
+			if(me.getTipoMovimentacao() == TipoMovimentacao.SAIDA) {
+				lucro = (me.getValorVenda() - getValorFornecedor()) * me.getQuantidade();
+				lucroTotal = lucroTotal + lucro;
+			}
+		}
+		return lucroTotal;
+	}
+	
+	public int getQuantidadeTotalSaidaProduto() {
+		int qtdTotalSaida = 0;
+		for (MovimentacaoEstoque me : getMovimentacoes()) {
+			if(me.getTipoMovimentacao() == TipoMovimentacao.SAIDA) {
+				qtdTotalSaida = qtdTotalSaida + me.getQuantidade();
+			}
+		}
+		return qtdTotalSaida;
 	}
 
 	public Long getId() {

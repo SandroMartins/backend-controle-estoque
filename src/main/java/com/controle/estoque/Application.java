@@ -6,27 +6,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-import com.controle.estoque.domain.MovimentacaoEstoque;
-import com.controle.estoque.domain.Produto;
 import com.controle.estoque.domain.TipoProduto;
-import com.controle.estoque.domain.enums.TipoMovimentacao;
-import com.controle.estoque.domain.repositories.MovimentacaoEstoqueRepository;
-import com.controle.estoque.domain.repositories.ProdutoRepository;
-import com.controle.estoque.domain.repositories.TipoProdutoRepository;
+import com.controle.estoque.domain.Usuario;
+import com.controle.estoque.repositories.TipoProdutoRepository;
+import com.controle.estoque.repositories.UsuarioRepository;
 
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 	
 	@Autowired
-	private ProdutoRepository produtoRepository;
-	
-	@Autowired
 	private TipoProdutoRepository tipoProdutoRepository;
-	
-	@Autowired
-	private MovimentacaoEstoqueRepository movimentacaoEstoqueRepository;
 
+	@Autowired
+	private UsuarioRepository usuarioRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder pe;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -35,15 +32,14 @@ public class Application implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		TipoProduto tipoProd = new TipoProduto(null, "Eletrodoméstico");
-		Produto prod = new Produto(null, "Geladeira", tipoProd, 2000.00, 5);
-		MovimentacaoEstoque mov = new MovimentacaoEstoque(null, prod, TipoMovimentacao.ENTRADA, null, null, 5);
+		Usuario usuario = new Usuario(null, "Administrador", "admin@admin.com", pe.encode("admin"));
+		usuarioRepository.saveAll(Arrays.asList(usuario));
 		
-		tipoProd.getProdutos().addAll(Arrays.asList(prod));
-		prod.getMovimentacoes().addAll(Arrays.asList(mov));
+		TipoProduto tipoProd1 = new TipoProduto(null, "Eletrônico");
+		TipoProduto tipoProd2 = new TipoProduto(null, "Eletrodoméstico");
+		TipoProduto tipoProd3 = new TipoProduto(null, "Móvel");
 		
-		tipoProdutoRepository.saveAll(Arrays.asList(tipoProd));
-		produtoRepository.saveAll(Arrays.asList(prod));
-		movimentacaoEstoqueRepository.saveAll(Arrays.asList(mov));
+		tipoProdutoRepository.saveAll(Arrays.asList(tipoProd1, tipoProd2, tipoProd3));
+		
 	}
 }

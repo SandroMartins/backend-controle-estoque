@@ -1,4 +1,4 @@
-package com.controle.estoque.domain.services.exceptions;
+package com.controle.estoque.services.exceptions;
 
 public class ObjectNotFoundException extends RuntimeException {
 

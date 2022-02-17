@@ -1,4 +1,4 @@
-package com.controle.estoque.domain.services;
+package com.controle.estoque.services;
 
 import java.util.Optional;
 
@@ -8,18 +8,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.controle.estoque.domain.MovimentacaoEstoque;
 import com.controle.estoque.domain.Produto;
 import com.controle.estoque.domain.TipoProduto;
 import com.controle.estoque.domain.enums.TipoMovimentacao;
-import com.controle.estoque.domain.repositories.ProdutoRepository;
-import com.controle.estoque.domain.repositories.TipoProdutoRepository;
-import com.controle.estoque.domain.services.exceptions.DataIntegrityException;
-import com.controle.estoque.domain.services.exceptions.ObjectNotFoundException;
-import com.controle.estoque.domain.services.exceptions.QuantidadeInsuficienteException;
 import com.controle.estoque.dto.ProdutoDTO;
+import com.controle.estoque.repositories.ProdutoRepository;
+import com.controle.estoque.repositories.TipoProdutoRepository;
+import com.controle.estoque.services.exceptions.DataIntegrityException;
+import com.controle.estoque.services.exceptions.ObjectNotFoundException;
+import com.controle.estoque.services.exceptions.QuantidadeInsuficienteException;
 
 @Service
 public class ProdutoService {

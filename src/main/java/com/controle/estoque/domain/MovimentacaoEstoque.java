@@ -28,7 +28,7 @@ public class MovimentacaoEstoque implements Serializable {
 	private Integer tipoMovimentacao;
 	private Double valorVenda;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy", timezone="GMT-3")
 	private Date dataVenda;
 	
 	private Integer quantidade;

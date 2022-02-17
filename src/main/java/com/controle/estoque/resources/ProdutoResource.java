@@ -1,4 +1,4 @@
-package com.controle.estoque.domain.resources;
+package com.controle.estoque.resources;
 
 import java.net.URI;
 
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.controle.estoque.domain.Produto;
-import com.controle.estoque.domain.services.ProdutoService;
 import com.controle.estoque.dto.ProdutoDTO;
+import com.controle.estoque.services.ProdutoService;
 
 @RestController
 @RequestMapping(value = "/produtos")

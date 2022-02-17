@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.validation.constraints.Min;
 
+import com.controle.estoque.domain.MovimentacaoEstoque;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class MovimentacaoEstoqueDTO implements Serializable {
@@ -18,7 +19,7 @@ public class MovimentacaoEstoqueDTO implements Serializable {
 	private Integer tipoMovimentacao;
 	private Double valorVenda;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd-MM-yyyy", timezone="GMT-3")
 	private Date dataVenda;
 	
 	@Min(value = 1, message = "Valor minimo deve ser 1")
@@ -37,6 +38,15 @@ public class MovimentacaoEstoqueDTO implements Serializable {
 		this.valorVenda = valorVenda;
 		this.dataVenda = dataVenda;
 		this.quantidade = quantidade;
+	}
+	
+	public MovimentacaoEstoqueDTO(MovimentacaoEstoque obj) {
+		id = obj.getId();
+		produtoId = obj.getProduto().getId();
+		tipoMovimentacao = obj.getTipoMovimentacao().getCod();
+		valorVenda = obj.getValorVenda();
+		dataVenda = obj.getDataVenda();
+		quantidade = obj.getQuantidade();
 	}
 
 	public Long getId() {
