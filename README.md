@@ -2,8 +2,7 @@
 
 ## Requisitos
 - Ter GIT para clonar o projeto.
-- Ter Node.js instalado.
-- Ter clonado o backend e estar rodando normalmente: Link: https://github.com/SandroMartins/backend-controle-estoque
+- Java 11
 
 ## Começando
 ``` bash
