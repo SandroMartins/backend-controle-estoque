@@ -11,7 +11,8 @@
 
   # Importar o projeto em uma IDE (de preferencia Eclipse Spring tools)
   
-  # Esperar maven baixar as dependencias e executar.
+  # Esperar maven baixar as dependencias .
+  # Ir no Arquivo Application.java e executa-lo
 ```
 
 ## Rotas
