@@ -19,7 +19,7 @@ public class MovimentacaoEstoqueDTO implements Serializable {
 	private Integer tipoMovimentacao;
 	private Double valorVenda;
 	
-	@JsonFormat(pattern = "dd-MM-yyyy", timezone="GMT-3")
+	@JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT-3")
 	private Date dataVenda;
 	
 	@Min(value = 1, message = "Valor minimo deve ser 1")

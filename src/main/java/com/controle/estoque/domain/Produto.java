@@ -14,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 
+import org.springframework.boot.context.properties.bind.DefaultValue;
+
 import com.controle.estoque.domain.enums.TipoMovimentacao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

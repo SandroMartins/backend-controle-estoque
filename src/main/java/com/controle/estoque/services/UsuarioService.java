@@ -37,6 +37,20 @@ public class UsuarioService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Usuario.class.getName()));
 	}
 	
+	public Usuario findByEmail(String email) {
+		UserSS user = authenticated();
+		if(user == null) {
+			throw new AuthorizationException("Acesso Negado");
+		}
+		
+		Usuario obj = repository.findByEmail(email);
+		if(obj == null) {
+			throw new ObjectNotFoundException(
+					"Objeto não encontrado! Id: " + obj.getId() + ", Tipo: " + Usuario.class.getName());
+		}
+		return obj;
+	}
+	
 	public Usuario insert(Usuario usuario) {
 		validaEmailRepetido(usuario, true);
 		

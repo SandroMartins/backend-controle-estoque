@@ -48,12 +48,14 @@ public class ProdutoService {
 	}
 	
 	public Produto insert(Produto produto) {
+		produto.setQuantidade(0);
 		return repository.save(produto);
 	}
 	
 	public Produto update(Produto produto) {
-		findById(produto.getId());
-		return repository.save(produto);
+		Produto novoProduto = findById(produto.getId());
+		updateData(novoProduto, produto);
+		return repository.save(novoProduto);
 	}
 	
 	public void delete(Long id) {
@@ -95,5 +97,11 @@ public class ProdutoService {
 			
 			repository.save(produto);
 		}		
+	}
+	
+	private void updateData(Produto novoProduto, Produto produto) {
+		novoProduto.setDescricao(produto.getDescricao());
+		novoProduto.setTipoProduto(produto.getTipoProduto());
+		novoProduto.setValorFornecedor(produto.getValorFornecedor());
 	}
 }

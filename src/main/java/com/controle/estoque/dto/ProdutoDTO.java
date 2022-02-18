@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.controle.estoque.domain.Produto;
+
 
 public class ProdutoDTO implements Serializable {
 
